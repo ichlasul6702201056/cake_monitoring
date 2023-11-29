@@ -53,19 +53,34 @@ class postHandler extends Controller
                 break;
         }
 
-        if (Cache::get('PosA') && Cache::get('PosB') && Cache::get('PosC')) {
-            // membuat kompilasi data dari 3 input 
+        if (Cache::get('PosA')) {
             $compiledData = array(
                 'humid_1' => Cache::get('humid_1'),
-                'humid_2' => Cache::get('humid_2'),
-                'humid_3' => Cache::get('humid_3'),
+                'humid_2' => Cache::get('humid_1'),
+                'humid_3' => Cache::get('humid_1'),
                 'temperature_1' => Cache::get('temperature_1'),
-                'temperature_2' => Cache::get('temperature_2'),
-                'temperature_3' => Cache::get('temperature_3'),
+                'temperature_2' => Cache::get('temperature_1'),
+                'temperature_3' => Cache::get('temperature_1'),
                 'gas_1' => Cache::get('gas_1'),
-                'gas_2' => Cache::get('gas_2'),
-                'gas_3' => Cache::get('gas_3'),
+                'gas_2' => Cache::get('gas_1'),
+                'gas_3' => Cache::get('gas_1'),
             );
+        }
+
+
+        // if (Cache::get('PosA') && Cache::get('PosB') && Cache::get('PosC')) {
+            // membuat kompilasi data dari 3 input 
+            // $compiledData = array(
+                // 'humid_1' => Cache::get('humid_1'),
+                // 'humid_2' => Cache::get('humid_2'),
+                // 'humid_3' => Cache::get('humid_3'),
+                // 'temperature_1' => Cache::get('temperature_1'),
+                // 'temperature_2' => Cache::get('temperature_2'),
+                // 'temperature_3' => Cache::get('temperature_3'),
+                // 'gas_1' => Cache::get('gas_1'),
+                // 'gas_2' => Cache::get('gas_2'),
+                // 'gas_3' => Cache::get('gas_3'),
+            // );
 
             // memasukkan data ke dalam database
             try
@@ -80,8 +95,8 @@ class postHandler extends Controller
             // menghapus cache pada server untuk menerima data baru
             Cache::flush();
             return 0;
-        }
     }
+
 
 
     /**
